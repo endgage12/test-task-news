@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -19,9 +20,11 @@ class NewsController extends Controller
         return view('favorit', compact('news'));
     }
 
-    public function show(News $new)
+    public function show(News $news, $id)
     {
-        $news = $new->get();
-        return view('news', compact('news'));
+        if($news = DB::table('news')->where('id', $id)->first()) {
+            return view('new', compact('news'));
+        } else return abort(404);
+
     }
 }
