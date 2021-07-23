@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\NewsController::class, 'index']);
 Route::get('/news', [\App\Http\Controllers\NewsController::class, 'allNews']);
 Route::get('/news/{id}', [\App\Http\Controllers\NewsController::class, 'show']);
+Route::get('/search', [\App\Http\Controllers\NewsController::class, 'searchIndex'])->name('search');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
