@@ -1,7 +1,7 @@
 <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
         <div class="caption">
-            <h3>{{ 'Title: '. $new->title }}</h3>
+            <h3><a href="news/{{ $new->id }}">{{ 'Title: '. $new->title }}</a></h3>
             <p>{{ 'Content:' . $new->content }}</p>
             <p>{{ 'Description:' . $new->description }}</p>
             <p>{{ 'Author:' . $new->author }}</p>

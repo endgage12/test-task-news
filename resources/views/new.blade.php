@@ -11,7 +11,7 @@
 <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
         <div class="caption">
-            <h3>{{ 'Title: '. $news->title }}</h3>
+            <h3> {{ 'Title: '. $news->title }} </h3>
             <p>{{ 'Content:' . $news->content }}</p>
             <p>{{ 'Description:' . $news->description }}</p>
             <p>{{ 'Author:' . $news->author }}</p>

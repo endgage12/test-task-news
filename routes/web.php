@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [\App\Http\Controllers\NewsController::class, 'index']);
-Route::get('/news', [\App\Http\Controllers\NewsController::class, 'allNews']);
+Route::get('/news', [\App\Http\Controllers\NewsController::class, 'allNews'])->name('news');
 Route::get('/news/{id}', [\App\Http\Controllers\NewsController::class, 'show']);
 Route::get('/search', [\App\Http\Controllers\NewsController::class, 'searchIndex'])->name('search');
 
