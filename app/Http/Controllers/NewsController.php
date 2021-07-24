@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function Symfony\Component\String\s;
 
@@ -42,6 +43,33 @@ class NewsController extends Controller
         {
             return view('search', compact('news'));
         } else return abort(404);
+    }
 
+    public function favoritNews(News $news)
+    {
+        Auth::user()->favorits()->attach($news->id);
+        return back();
+    }
+
+    public function deleteFavoritNews(News $news)
+    {
+        Auth::user()->favorits()->detach($news->id);
+        return back();
+    }
+
+    public function showFavorit()
+    {
+        $favorites = Auth::user()->favorits;
+        return view('myfavorits', compact('favorites'));
+    }
+
+    public function addInFavorit($id)
+    {
+        $user = auth()->user();
+        DB::table('favorits')->insert([
+            'user_id' => $user->id,
+            'news_id' => $id,
+        ]);
+        return back();
     }
 }

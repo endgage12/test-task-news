@@ -1,15 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-{{--    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">--}}
+@extends('layouts.master')
 
-</head>
-<body>
+@section('title', 'Избранные новости')
+
+@section('content')
+
+<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    @if (Route::has('login'))
+        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                @endif
+            @endauth
+        </div>
+    @endif
 
 <div class="container">
     <div class="row">
@@ -26,13 +34,13 @@
             </form>
         </div>
     </div>
-</div>
-
-<a href="{{ route('news') }}">Все новости</a>
 
 {{-- Передаем на эту страницу массив news favorit--}}
     @foreach($news as $new)
         @include('layouts.new', compact('new'))
     @endforeach
+
+</div>
+        @endsection
 </body>
 </html>
